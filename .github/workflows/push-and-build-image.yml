@@ -17,6 +17,16 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Free disk space on Ubuntu runner 🔧
+        uses: kfir4444/free-disk-space@main
+        with:
+          # frees about 6 GB, warning: may remove required tools
+          tool-cache: false
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          swap-storage: true
       - name: Push to Docker Hub
         uses: docker/build-push-action@v5
         with:
